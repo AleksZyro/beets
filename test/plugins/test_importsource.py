@@ -154,7 +154,6 @@ class ImportSourceTestListenerRegistration(PluginMixin, AutotagImportTestCase):
         self.load_plugins()
 
         plugin = plugins._instances[0]
-        assert hasattr(plugin, "stop_suggestions_for_albums")
         assert isinstance(plugin.stop_suggestions_for_albums, set)
         assert "item_removed" in plugin._raw_listeners
         assert "import_task_choice" in plugin._raw_listeners
