@@ -170,7 +170,7 @@ class FieldQuery(Query, Generic[P]):
 
     def __eq__(self, other: object) -> bool:
         return (
-            super().__eq__(other)
+            type(self) is type(other)
             and self.field_name == other.field_name
             and self.pattern == other.pattern
         )
@@ -564,7 +564,7 @@ class CollectionQuery(Query):
         return f"{self.__class__.__name__}({self.subqueries!r})"
 
     def __eq__(self, other: object) -> bool:
-        return super().__eq__(other) and self.subqueries == other.subqueries
+        return type(self) is type(other) and self.subqueries == other.subqueries
 
     def __hash__(self) -> int:
         """Since subqueries are mutable, this object should not be hashable.
@@ -635,7 +635,7 @@ class NotQuery(Query):
         return f"{self.__class__.__name__}({self.subquery!r})"
 
     def __eq__(self, other: object) -> bool:
-        return super().__eq__(other) and self.subquery == other.subquery
+        return isinstance(other, NotQuery) and self.subquery == other.subquery
 
     def __hash__(self) -> int:
         return hash(("not", hash(self.subquery)))
@@ -915,7 +915,7 @@ class SingletonQuery(FieldQuery[str]):
     and singleton:false, singleton:0 are handled consistently.
     """
 
-    def __new__(
+    def __new__(  # type: ignore[misc]
         cls, field: str, value: str, *args: Any, **kwargs: Any
     ) -> Query:
         query = NoneQuery("album_id")
