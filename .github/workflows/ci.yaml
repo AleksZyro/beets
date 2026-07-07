@@ -55,6 +55,14 @@ jobs:
       - name: Install system dependencies on Ubuntu
         if: matrix.platform == 'ubuntu-latest'
         run: |
+          # Work around transient signature issues in preconfigured runner repos
+          # that are unrelated to this project.
+          for source_file in /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
+            [ -f "$source_file" ] || continue
+            if grep -q "packages.microsoft.com" "$source_file"; then
+              sudo rm -f "$source_file"
+            fi
+          done
           sudo apt update
           sudo apt install --yes --no-install-recommends \
             ffmpeg \
