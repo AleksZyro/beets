@@ -1093,6 +1093,7 @@ class TestAliases:
             ("indie rock", "indie rock"),
             ("juke/footwork", "juke/footwork"),
             ("Funk / Soul", "funk / soul"),
+            ("psy-trance", "psytrance"),
             ("psy rock", "psychedelic rock"),
             ("psych-pop", "psychedelic pop"),
         ],
