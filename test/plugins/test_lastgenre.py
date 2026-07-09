@@ -1093,6 +1093,8 @@ class TestAliases:
             ("psy rock", "psychedelic rock"),
             ("psych-pop", "psychedelic pop"),
             ("disney", "disney"),
+            ("old-school death-metal", "old school death metal"),
+            ("old-skool-hip-hop", "old school hip hop"),
         ],
     )
     def test_default_alias_patterns(self, config, input_genre, expected_genre):

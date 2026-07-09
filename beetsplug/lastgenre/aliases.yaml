@@ -31,11 +31,11 @@ synth-pop:
 nu \1:
     - nu[ -]*(disco|jazz|metal|soul)
 
-# Old School spellings: old-skool-jungle/-hardcore, oldschool hip-hop
+# Old School spellings: old-skool hip-hop, oldschool death metal
 old school hip hop:
     - old[ -]*(?:school|skool)[ -]+hip[ -]*hop
-old school \1:
-    - old[ -]*(?:school|skool)[ -]+(\w+)
+old school death metal:
+    - old[ -]*(?:school|skool)[ -]+death[ -]*metal
 
 # Terminology / Synonyms
 electronic:
